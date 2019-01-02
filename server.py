@@ -61,7 +61,7 @@ decode_dict = {
 
 
 def accept_incoming_connections():
-    """Sets up handling for incoming clients."""
+
     while True:
         client, client_address = SERVER.accept()
         print("%s:%s has connected." % client_address)
@@ -70,8 +70,28 @@ def accept_incoming_connections():
         Thread(target=handle_client, args=(client,)).start()
 
 
+def decode(msg):
+    pom = " "
+    list_of_char = msg.split()
+    print list_of_char
+    for char in list_of_char:
+        if decode_dict.get(char) is not None:
+            pom += decode_dict.get(char)
+    print "pom=" + pom
+    return pom
+
+
+def encode(msg):
+    pom = " "
+
+    for i in range(len(msg)):
+        if encode_dict.get(msg[i]) is not None:
+            pom += encode_dict.get(msg[i])
+            pom += " "
+
+    return pom
+
 def handle_client(client):  # Takes client socket as argument.
-    """Handles a single client connection."""
 
     name = client.recv(BUFSIZ).decode("utf8")
     welcome = 'Welcome %s! If you ever want to quit, type {quit} to exit.' % name
@@ -92,8 +112,7 @@ def handle_client(client):  # Takes client socket as argument.
             break
 
 
-def broadcast(msg, prefix=""):  # prefix is for name identification.
-    """Broadcasts a message to all the clients."""
+def broadcast(msg, prefix=""):
 
     for sock in clients:
         sock.send(bytes(prefix, "utf8")+msg)
