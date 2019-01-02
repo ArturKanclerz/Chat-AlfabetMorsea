@@ -7,6 +7,16 @@ from pygame import mixer
 import tkinter
 import time
 
+sound_dict = {
+    'a': "Sounds/A_morse_code.mp3"
+}
+
+image_dict = {
+    'a': ("yellow", "red", "grey")
+
+}
+
+
 
 def receive():
     """Handles receiving of messages."""
