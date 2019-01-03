@@ -147,7 +147,7 @@ def send(check, event=None):  # event is passed by binders.
     print "Wiadomosc do wyslania: " + msg
     my_msg.set("")  # Clears input field.
     client_socket.send(bytes(msg))
-    if msg == "{quit}":
+    if msg[1:] == "{quit}":
         client_socket.close()
         top.quit()
 
