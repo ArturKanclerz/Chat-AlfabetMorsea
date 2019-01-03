@@ -69,8 +69,6 @@ image_dict = {
 }
 
 
-
-
 def receive():
     """Handles receiving of messages."""
     global c2
@@ -120,9 +118,9 @@ def return_delay_from_color(color=""):
 def change_to_image(msg = ""):
     prefix = msg[1:msg.index(':') + 1]
     just_msg = msg[msg.index(':') + 1:]
+    msg_list.insert(tkinter.END, prefix + " Wyswietlam wiadomosc graficzna...")
     for i in range(len(just_msg)):
         if image_dict.get(just_msg[i]) is not None:
-
             temp_tuple = image_dict.get(just_msg[i])
             for el in temp_tuple:
                 image.configure(bg=el)
