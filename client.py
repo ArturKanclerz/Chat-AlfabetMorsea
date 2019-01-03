@@ -10,11 +10,61 @@ import time
 
 sound_dict = {
     'a': "Sounds/A_morse_code.mp3",
-    'b': "Sounds/B_morse_code.mp3"
+    'b': "Sounds/B_morse_code.mp3",
+    'c': "Sounds/B_morse_code.mp3",
+    'd': "Sounds/B_morse_code.mp3",
+    'e': "Sounds/B_morse_code.mp3",
+    'f': "Sounds/B_morse_code.mp3",
+    'g': "Sounds/B_morse_code.mp3",
+    'h': "Sounds/B_morse_code.mp3",
+    'i': "Sounds/B_morse_code.mp3",
+    'j': "Sounds/B_morse_code.mp3",
+    'k': "Sounds/B_morse_code.mp3",
+    'l': "Sounds/B_morse_code.mp3",
+    'm': "Sounds/B_morse_code.mp3",
+    'n': "Sounds/B_morse_code.mp3",
+    'o': "Sounds/B_morse_code.mp3",
+    'p': "Sounds/B_morse_code.mp3",
+    'q': "Sounds/B_morse_code.mp3",
+    'r': "Sounds/B_morse_code.mp3",
+    's': "Sounds/B_morse_code.mp3",
+    't': "Sounds/B_morse_code.mp3",
+    'u': "Sounds/B_morse_code.mp3",
+    'v': "Sounds/B_morse_code.mp3",
+    'w': "Sounds/B_morse_code.mp3",
+    'x': "Sounds/B_morse_code.mp3",
+    'y': "Sounds/B_morse_code.mp3",
+    'z': "Sounds/B_morse_code.mp3"
+
 }
 
 image_dict = {
-    'a': ("yellow", "red", "grey")
+    'a': ("yellow", "red", "grey"),
+    'b': ("red", "yellow", "yellow", "yellow", "grey"),
+    'c': ("red", "yellow", "red", "yellow", "grey"),
+    'd': ("red", "yellow", "yellow", "grey"),
+    'e': ("yellow", "grey"),
+    'f': ("yellow", "yellow", "red", "yellow", "grey"),
+    'g': ("red", "red", "yellow", "grey"),
+    'h': ("yellow", "yellow", "yellow", "yellow", "grey"),
+    'i': ("yellow", "yellow", "grey"),
+    'j': ("yellow", "red", "red", "red", "grey"),
+    'k': ("red", "yellow", "red", "grey"),
+    'l': ("yellow", "red", "yellow", "yellow", "grey"),
+    'm': ("red", "red", "grey"),
+    'n': ("red", "yellow",  "grey"),
+    'o': ("red", "red", "red", "grey"),
+    'p': ("yellow", "red", "red", "yellow", "grey"),
+    'q': ("red", "red", "yellow", "red", "grey"),
+    'r': ("yellow", "red", "yellow", "grey"),
+    's': ("yellow", "yellow", "yellow", "grey"),
+    't': ("red", "grey"),
+    'u': ("yellow", "yellow", "red", "grey"),
+    'v': ("yellow", "yellow", "yellow", "red", "grey"),
+    'w': ("yellow", "red", "red", "grey"),
+    'x': ("red", "yellow", "yellow", "red", "grey"),
+    'y': ("red", "yellow", "red", "red","grey"),
+    'z': ("red", "red", "yellow", "yellow", "grey")
 
 }
 
@@ -45,8 +95,17 @@ c = False
 c2 = 0
 
 
-def change_to_sound(msg=""):
-    return None
+def change_to_sound(msg = ""):
+    prefix = msg[1:msg.index(':')+1]
+    just_msg = msg[msg.index(':') + 1:]
+    msg_list.insert(tkinter.END, prefix + " Odtwarzam dzwiek...")
+    msg_list.see(tkinter.END)
+    for i in range(len(just_msg)):
+        if sound_dict.get(just_msg[i]) is not None:
+            mixer.init()
+            mixer.music.load(os.path.abspath(sound_dict.get(just_msg[i])))
+            mixer.music.play()
+            time.sleep(2)
 
 
 def return_delay_from_color(color=""):
@@ -140,7 +199,7 @@ top.protocol("WM_DELETE_WINDOW", on_closing)
 
 # Socket part
 HOST = '127.0.0.1'  # Enter host of the server without inverted commas
-PORT = 33000
+PORT = 33005
 BUFSIZ = 1024
 ADDR = (HOST, PORT)
 
