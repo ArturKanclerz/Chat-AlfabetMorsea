@@ -1,13 +1,66 @@
+import os
 from socket import AF_INET, socket, SOCK_STREAM
 from threading import Thread
 
+from pygame import mixer, time
+
+
 encode_dict = {
-    'a': ".-"
+    'a': ".-",
+    'b': "-...",
+    'c': "-.-.",
+    'd': "-..",
+    'e': ".",
+    'f': "..-.",
+    'g': "--.",
+    'h': "....",
+    'i': "..",
+    'j': ".---",
+    'k': "-.-",
+    'l': ".-..",
+    'm': "--",
+    'n': "-.",
+    'o': "---",
+    'p': ".--.",
+    'q': "--.-",
+    'r': ".-.",
+    's': "...",
+    't': "-",
+    'u': "..-",
+    'v': "...-",
+    'w': ".--",
+    'x': "-..-",
+    'y': "-.--",
+    'z': "--.."
 }
 
 decode_dict = {
     ".-": 'a',
-    "-...": 'b'
+    "-...": 'b',
+    "-.-.": 'c',
+    "-..": 'd',
+    ".": 'e',
+    "..-.": 'f',
+    "--.": 'g',
+    "....": 'h',
+    "..": 'i',
+    ".---": 'j',
+    "-.-": 'k',
+    ".-..": 'l',
+    "--": 'm',
+    "-.": 'n',
+    "---": 'o',
+    ".--.": 'p',
+    "--.-": 'q',
+    ".-.": 'r',
+    "...": 's',
+    "-": 't',
+    "..-": 'u',
+    "...-": 'v',
+    ".--": 'w',
+    "-..-": 'x',
+    "-.--": 'y',
+    "--..": 'z'
 }
 
 
@@ -33,14 +86,15 @@ def encode(msg):
     return pom
 
 
-def accept_incoming_connections():
 
+def accept_incoming_connections():
     while True:
         client, client_address = SERVER.accept()
         print("%s:%s has connected." % client_address)
-        client.send(bytes("Greetings from the cave! Now type your name and press enter!"))
+        client.send(bytes(" Witaj w chacie! Wpisz swoj nick i nacisnij Enter"))
         addresses[client] = client_address
         Thread(target=handle_client, args=(client,)).start()
+
 
 
 def handle_client(client):  # Takes client socket as argument.
@@ -75,11 +129,11 @@ def handle_client(client):  # Takes client socket as argument.
             break
 
 
-
-def broadcast(msg, prefix=""):
+def broadcast(msg, prefix=""):  # prefix is for name identification.
+    """Broadcasts a message to all the clients."""
 
     for sock in clients:
-        sock.send(bytes(prefix)+msg)
+        sock.send(msg[0] + bytes(prefix) + msg[1:])
 
 
 clients = {}
@@ -95,7 +149,7 @@ SERVER.bind(ADDR)
 
 if __name__ == "__main__":
     SERVER.listen(5)
-    print("Waiting for connection...")
+    print(" Waiting for connection...")
     ACCEPT_THREAD = Thread(target=accept_incoming_connections)
     ACCEPT_THREAD.start()
     ACCEPT_THREAD.join()
