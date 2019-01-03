@@ -163,13 +163,14 @@ def on_closing(event=None):
 top = tkinter.Tk()
 top.geometry("1000x550")
 top.title("Chat - Kanclerz & Romaniuk")
+top.configure(bg="#716664")
 
 messages_frame = tkinter.Frame(top)
 my_msg = tkinter.StringVar()  # For the messages to be sent.
 my_msg.set("")
 scrollbar = tkinter.Scrollbar(messages_frame)  # To see through previous messages.
 # this will contain the messages.
-msg_list = tkinter.Listbox(messages_frame, height=30, width=100, yscrollcommand=scrollbar.set)
+msg_list = tkinter.Listbox(messages_frame, height=28, width=85, bg="#99FFFF", yscrollcommand=scrollbar.set)
 scrollbar.pack(side=tkinter.RIGHT, fill=tkinter.Y)
 msg_list.pack(side=tkinter.LEFT, fill=tkinter.BOTH)
 msg_list.pack()
@@ -183,13 +184,15 @@ Radiobutton(text='Kodowanie', value=2, variable=var).place(x=840, y=230)
 Radiobutton(text='Sygnaly dzwiekowe', value=3, variable=var).place(x=840, y=255)
 Radiobutton(text='Sygnaly graficzne', value=4, variable=var).place(x=840, y=280)
 
-imageLabel = Label(top, text="Wiadomosc graficzna", fg="black", font="Helvetica")
+imageLabel = Label(top, text="Wiadomosc graficzna", bg="#33CC00", fg="black", font="Helvetica")
 imageLabel.place(x=-10, y=230, height=30, width=200)
+optionsLabel = Label(top, text="Wybierz opcje", bg="#33CC00", fg="black", font="Helvetica")
+optionsLabel.place(x=775, y=130, height=30, width=200)
 
 image = Button(font="Helvetica", bg="grey")
 image.place(x=40, y=290, height=100, width=100)
 
-entry_field = tkinter.Entry(top, textvariable=my_msg)
+entry_field = tkinter.Entry(top, width="88",  textvariable=my_msg)
 entry_field.bind("<Return>", sendd)
 entry_field.pack()
 send_button = tkinter.Button(top, text="Send", command=sendd)
