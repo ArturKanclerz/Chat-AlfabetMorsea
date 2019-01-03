@@ -30,9 +30,9 @@ def receive():
 
 
 def send(event=None):  # event is passed by binders.
-    msg = my_msg.get()
+    msg = var.get().__str__() + my_msg.get()
     my_msg.set("")  # Clears input field.
-    client_socket.send(bytes(msg, "utf8"))
+    client_socket.send(bytes(msg))
     if msg == "{quit}":
         client_socket.close()
         top.quit()

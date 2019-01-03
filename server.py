@@ -2,72 +2,13 @@ from socket import AF_INET, socket, SOCK_STREAM
 from threading import Thread
 
 encode_dict = {
-    'a': ".-",
-    'b': "-...",
-    'c': "-.-.",
-    'd': "-..",
-    'e': ".",
-    'f': "..-.",
-    'g': "--.",
-    'h': "....",
-    'i': "..",
-    'j': ".---",
-    'k': "-.-",
-    'l': ".-..",
-    'm': "--",
-    'n': "-.",
-    'o': "---",
-    'p': ".--.",
-    'q': "--.-",
-    'r': ".-.",
-    's': "...",
-    't': "-",
-    'u': "..-",
-    'v': "...-",
-    'w': ".--",
-    'x': "-..-",
-    'y': "-.--",
-    'z': "--.."
+    'a': ".-"
 }
 
 decode_dict = {
     ".-": 'a',
-    "-...": 'b',
-    "-.-.": 'c',
-    "-..": 'd',
-    ".": 'e',
-    "..-.": 'f',
-    "--.": 'g',
-    "....": 'h',
-    "..": 'i',
-    ".---": 'j',
-    "-.-": 'k',
-    ".-..": 'l',
-    "--": 'm',
-    "-.": 'n',
-    "---": 'o',
-    ".--.": 'p',
-    "--.-": 'q',
-    ".-.": 'r',
-    "...": 's',
-    "-": 't',
-    "..-": 'u',
-    "...-": 'v',
-    ".--": 'w',
-    "-..-": 'x',
-    "-.--": 'y',
-    "--..": 'z'
+    "-...": 'b'
 }
-
-
-def accept_incoming_connections():
-
-    while True:
-        client, client_address = SERVER.accept()
-        print("%s:%s has connected." % client_address)
-        client.send(bytes("Greetings from the cave! Now type your name and press enter!", "utf8"))
-        addresses[client] = client_address
-        Thread(target=handle_client, args=(client,)).start()
 
 
 def decode(msg):
@@ -91,31 +32,54 @@ def encode(msg):
 
     return pom
 
+
+def accept_incoming_connections():
+
+    while True:
+        client, client_address = SERVER.accept()
+        print("%s:%s has connected." % client_address)
+        client.send(bytes("Greetings from the cave! Now type your name and press enter!"))
+        addresses[client] = client_address
+        Thread(target=handle_client, args=(client,)).start()
+
+
 def handle_client(client):  # Takes client socket as argument.
+    """Handles a single client connection."""
 
     name = client.recv(BUFSIZ).decode("utf8")
-    welcome = 'Welcome %s! If you ever want to quit, type {quit} to exit.' % name
-    client.send(bytes(welcome, "utf8"))
-    msg = "%s has joined the chat!" % name
-    broadcast(bytes(msg, "utf8"))
+    welcome = ' Witaj %s! Jezeli chcesz zakonczyc wpisz {quit}.' % name
+    client.send(bytes(welcome))
+    msg = " %s has joined the chat!" % name
+    broadcast(bytes(msg))
     clients[client] = name
 
     while True:
         msg = client.recv(BUFSIZ)
-        if msg != bytes("{quit}", "utf8"):
-            broadcast(msg, name+": ")
+        if msg != bytes("{quit}"):
+            if msg[0] == '0':
+                broadcast(msg, name+": ")
+            if msg[0] == '1':
+                broadcast(decode(msg[1:].lower()), name + ": ")
+            if msg[0] == '2':
+                broadcast(encode(msg.lower()), name + ": ")
+            if msg[0] == '3':
+                broadcast(msg, name + ": ")
+            if msg[0] == '4':
+                broadcast(msg, name + ": ")
+
         else:
-            client.send(bytes("{quit}", "utf8"))
+            client.send(bytes("{quit}"))
             client.close()
             del clients[client]
-            broadcast(bytes("%s has left the chat." % name, "utf8"))
+            broadcast(bytes(" %s has left the chat." % name))
             break
+
 
 
 def broadcast(msg, prefix=""):
 
     for sock in clients:
-        sock.send(bytes(prefix, "utf8")+msg)
+        sock.send(bytes(prefix)+msg)
 
 
 clients = {}
