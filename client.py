@@ -11,30 +11,30 @@ import time
 sound_dict = {
     'a': "Sounds/A_morse_code.mp3",
     'b': "Sounds/B_morse_code.mp3",
-    'c': "Sounds/B_morse_code.mp3",
-    'd': "Sounds/B_morse_code.mp3",
-    'e': "Sounds/B_morse_code.mp3",
-    'f': "Sounds/B_morse_code.mp3",
-    'g': "Sounds/B_morse_code.mp3",
-    'h': "Sounds/B_morse_code.mp3",
-    'i': "Sounds/B_morse_code.mp3",
-    'j': "Sounds/B_morse_code.mp3",
-    'k': "Sounds/B_morse_code.mp3",
-    'l': "Sounds/B_morse_code.mp3",
-    'm': "Sounds/B_morse_code.mp3",
-    'n': "Sounds/B_morse_code.mp3",
-    'o': "Sounds/B_morse_code.mp3",
-    'p': "Sounds/B_morse_code.mp3",
-    'q': "Sounds/B_morse_code.mp3",
-    'r': "Sounds/B_morse_code.mp3",
-    's': "Sounds/B_morse_code.mp3",
-    't': "Sounds/B_morse_code.mp3",
-    'u': "Sounds/B_morse_code.mp3",
-    'v': "Sounds/B_morse_code.mp3",
-    'w': "Sounds/B_morse_code.mp3",
-    'x': "Sounds/B_morse_code.mp3",
-    'y': "Sounds/B_morse_code.mp3",
-    'z': "Sounds/B_morse_code.mp3"
+    'c': "Sounds/C_morse_code.mp3",
+    'd': "Sounds/D_morse_code.mp3",
+    'e': "Sounds/E_morse_code.mp3",
+    'f': "Sounds/F_morse_code.mp3",
+    'g': "Sounds/G_morse_code.mp3",
+    'h': "Sounds/H_morse_code.mp3",
+    'i': "Sounds/I_morse_code.mp3",
+    'j': "Sounds/J_morse_code.mp3",
+    'k': "Sounds/K_morse_code.mp3",
+    'l': "Sounds/L_morse_code.mp3",
+    'm': "Sounds/M_morse_code.mp3",
+    'n': "Sounds/N_morse_code.mp3",
+    'o': "Sounds/O_morse_code.mp3",
+    'p': "Sounds/P_morse_code.mp3",
+    'q': "Sounds/P_morse_code.mp3",
+    'r': "Sounds/R_morse_code.mp3",
+    's': "Sounds/S_morse_code.mp3",
+    't': "Sounds/T_morse_code.mp3",
+    'u': "Sounds/U_morse_code.mp3",
+    'v': "Sounds/V_morse_code.mp3",
+    'w': "Sounds/W_morse_code.mp3",
+    'x': "Sounds/X_morse_code.mp3",
+    'y': "Sounds/Y_morse_code.mp3",
+    'z': "Sounds/Z_morse_code.mp3"
 
 }
 
@@ -202,7 +202,7 @@ top.protocol("WM_DELETE_WINDOW", on_closing)
 
 # Socket part
 HOST = '127.0.0.1'  # Enter host of the server without inverted commas
-PORT = 33005
+PORT = 33006
 BUFSIZ = 1024
 ADDR = (HOST, PORT)
 
