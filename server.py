@@ -109,7 +109,7 @@ def handle_client(client):  # Takes client socket as argument.
 
     while True:
         msg = client.recv(BUFSIZ)
-        if msg != bytes("{quit}"):
+        if msg[1:] != bytes("{quit}"):
             if msg[0] == '0':
                 broadcast(msg, name+": ")
             if msg[0] == '1':
