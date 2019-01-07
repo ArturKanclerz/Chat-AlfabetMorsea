@@ -199,7 +199,7 @@ send_button.pack()
 top.protocol("WM_DELETE_WINDOW", on_closing)
 
 # Socket part
-HOST = '127.0.0.1'  # Enter host of the server without inverted commas
+HOST = '25.54.174.161'  # Enter host of the server without inverted commas
 PORT = 33006
 BUFSIZ = 1024
 ADDR = (HOST, PORT)

@@ -31,7 +31,8 @@ encode_dict = {
     'w': ".--",
     'x': "-..-",
     'y': "-.--",
-    'z': "--.."
+    'z': "--..",
+    ' ': ' '
 }
 
 decode_dict = {
@@ -66,11 +67,15 @@ decode_dict = {
 
 def decode(msg):
     pom = " "
-    list_of_char = msg.split()
+    list_of_char = msg.split(' ')
+    print "TEST"
+    print list_of_char
     print list_of_char
     for char in list_of_char:
         if decode_dict.get(char) is not None:
             pom += decode_dict.get(char)
+        else:
+            pom += " "
     print "pom=" + pom
     return pom
 
@@ -139,7 +144,7 @@ def broadcast(msg, prefix=""):  # prefix is for name identification.
 clients = {}
 addresses = {}
 
-HOST = '127.0.0.1'
+HOST = '25.54.174.161'
 PORT = 33006
 BUFSIZ = 1024
 ADDR = (HOST, PORT)
