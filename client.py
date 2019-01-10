@@ -63,8 +63,8 @@ image_dict = {
     'v': ("yellow", "yellow", "yellow", "red", "grey"),
     'w': ("yellow", "red", "red", "grey"),
     'x': ("red", "yellow", "yellow", "red", "grey"),
-    'y': ("red", "yellow", "red", "red","grey"),
-    'z': ("red", "red", "yellow", "yellow", "grey")
+    'y': ("red", "yellow", "red", "red","grey")
+
 
 }
 
