@@ -158,7 +158,7 @@ def on_closing(event=None):
 
 
 top = tkinter.Tk()
-top.geometry("1000x550")
+top.geometry("1400x770")
 top.title("Chat - Kanclerz & Romaniuk")
 top.configure(bg="#716664")
 
@@ -166,7 +166,7 @@ messages_frame = tkinter.Frame(top)
 my_msg = tkinter.StringVar()
 my_msg.set("")
 scrollbar = tkinter.Scrollbar(messages_frame)
-msg_list = tkinter.Listbox(messages_frame, height=29, width=86, bg="#99FFFF", yscrollcommand=scrollbar.set)
+msg_list = tkinter.Listbox(messages_frame, height=29, width=86, bg="#99FFFF", yscrollcommand=scrollbar.set, font =10)
 scrollbar.pack(side=tkinter.RIGHT, fill=tkinter.Y)
 msg_list.pack(side=tkinter.LEFT, fill=tkinter.BOTH)
 msg_list.pack()
@@ -174,21 +174,21 @@ messages_frame.pack()
 var = tkinter.IntVar()
 tapy = 170
 var.set(0)
-Radiobutton(text='Text', value=0, variable=var).place(x=840, y=180)
-Radiobutton(text='Decoding', value=1, variable=var).place(x=840, y=205)
-Radiobutton(text='Encoding', value=2, variable=var).place(x=840, y=230)
-Radiobutton(text='Sound signals', value=3, variable=var).place(x=840, y=255)
-Radiobutton(text='Graphic signals', value=4, variable=var).place(x=840, y=280)
+Radiobutton(text='Text', value=0, variable=var).place(x=1220, y=180)
+Radiobutton(text='Decoding', value=1, variable=var).place(x=1220, y=205)
+Radiobutton(text='Encoding', value=2, variable=var).place(x=1220, y=230)
+Radiobutton(text='Sound signals', value=3, variable=var).place(x=1220, y=255)
+Radiobutton(text='Graphic signals', value=4, variable=var).place(x=1220, y=280)
 
 imageLabel = Label(top, text="Graphic Message", bg="#33CC00", fg="black", font="Helvetica")
 imageLabel.place(x=-10, y=230, height=30, width=200)
 optionsLabel = Label(top, text="Choose option", bg="#33CC00", fg="black", font="Helvetica")
-optionsLabel.place(x=775, y=130, height=30, width=200)
+optionsLabel.place(x=1190, y=130, height=30, width=200)
 
 image = Button(font="Helvetica", bg="grey")
 image.place(x=40, y=290, height=100, width=100)
 
-entry_field = tkinter.Entry(top, width="88",  textvariable=my_msg)
+entry_field = tkinter.Entry(top, width="161",  textvariable=my_msg)
 entry_field.bind("<Return>", sendd)
 entry_field.pack()
 send_button = tkinter.Button(top, text="Send", command=sendd)
@@ -197,7 +197,7 @@ send_button.pack()
 top.protocol("WM_DELETE_WINDOW", on_closing)
 
 
-HOST = '25.54.174.161'
+HOST = '127.0.0.1'
 PORT = 33006
 BUFSIZ = 1024
 ADDR = (HOST, PORT)

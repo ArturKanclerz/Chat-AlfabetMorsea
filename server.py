@@ -139,7 +139,7 @@ def broadcast(msg, prefix=""):
 clients = {}
 addresses = {}
 
-HOST = '25.54.174.161'
+HOST = '127.0.0.1'
 PORT = 33006
 BUFSIZ = 1024
 ADDR = (HOST, PORT)
