@@ -96,6 +96,7 @@ c2 = 0
 def change_to_sound(msg = ""):
     prefix = msg[1:msg.index(':')+1]
     just_msg = msg[msg.index(':') + 1:]
+    prefix = prefix[0].upper() + prefix[1:]
     msg_list.insert(tkinter.END, prefix + " Odtwarzam dzwiek...")
     msg_list.see(tkinter.END)
     for i in range(len(just_msg)):
@@ -118,6 +119,8 @@ def return_delay_from_color(color=""):
 def change_to_image(msg = ""):
     prefix = msg[1:msg.index(':') + 1]
     just_msg = msg[msg.index(':') + 1:]
+    prefix = prefix[0].upper() + prefix[1:]
+    print prefix
     msg_list.insert(tkinter.END, prefix + " Wyswietlam wiadomosc graficzna...")
     for i in range(len(just_msg)):
         if image_dict.get(just_msg[i]) is not None:
@@ -132,12 +135,14 @@ def sendd(event=None):
     global c
     send(c)
 
-
 def send(check, event=None):  # event is passed by binders.
 
     global c
     if check is False:
         msg = my_msg.get()
+        nick ="Twoj nick: " + msg
+        nickLabel = Label(top, text=nick, bg="#33CC00", fg="black", font="Helvetica")
+        nickLabel.place(x=-10, y=100, height=30, width=220)
         c = True
         print "Jestem w check FALSE"
     else:
@@ -199,7 +204,7 @@ send_button.pack()
 top.protocol("WM_DELETE_WINDOW", on_closing)
 
 # Socket part
-HOST = '25.54.174.161'  # Enter host of the server without inverted commas
+HOST = '127.0.0.1'  # Enter host of the server without inverted commas
 PORT = 33006
 BUFSIZ = 1024
 ADDR = (HOST, PORT)
