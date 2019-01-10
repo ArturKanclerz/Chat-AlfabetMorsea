@@ -58,9 +58,10 @@ decode_dict = {
     ".--": 'w',
     "-..-": 'x',
     "-.--": 'y',
-    "--..": 'z'
+    "--..": 'z',
+    " ": " "
 }
-
+# sie co tam
 
 def decode(msg):
     pom = " "
