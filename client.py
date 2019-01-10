@@ -158,7 +158,7 @@ def on_closing(event=None):
 
 
 top = tkinter.Tk()
-top.geometry("1400x770")
+top.geometry("1250x620")
 top.title("Chat - Kanclerz & Romaniuk")
 top.configure(bg="#716664")
 
@@ -174,21 +174,21 @@ messages_frame.pack()
 var = tkinter.IntVar()
 tapy = 170
 var.set(0)
-Radiobutton(text='Text', value=0, variable=var).place(x=1220, y=180)
-Radiobutton(text='Decoding', value=1, variable=var).place(x=1220, y=205)
-Radiobutton(text='Encoding', value=2, variable=var).place(x=1220, y=230)
-Radiobutton(text='Sound signals', value=3, variable=var).place(x=1220, y=255)
-Radiobutton(text='Graphic signals', value=4, variable=var).place(x=1220, y=280)
+Radiobutton(text='Text', value=0, variable=var).place(x=1100, y=180)
+Radiobutton(text='Decoding', value=1, variable=var).place(x=1100, y=205)
+Radiobutton(text='Encoding', value=2, variable=var).place(x=1100, y=230)
+Radiobutton(text='Sound signals', value=3, variable=var).place(x=1100, y=255)
+Radiobutton(text='Graphic signals', value=4, variable=var).place(x=1100, y=280)
 
 imageLabel = Label(top, text="Graphic Message", bg="#33CC00", fg="black", font="Helvetica")
-imageLabel.place(x=-10, y=230, height=30, width=200)
+imageLabel.place(x=-10, y=280, height=30, width=200)
 optionsLabel = Label(top, text="Choose option", bg="#33CC00", fg="black", font="Helvetica")
-optionsLabel.place(x=1190, y=130, height=30, width=200)
+optionsLabel.place(x=1050, y=130, height=30, width=200)
 
 image = Button(font="Helvetica", bg="grey")
-image.place(x=40, y=290, height=100, width=100)
+image.place(x=40, y=340, height=100, width=100)
 
-entry_field = tkinter.Entry(top, width="161",  textvariable=my_msg)
+entry_field = tkinter.Entry(top, width="132",  textvariable=my_msg)
 entry_field.bind("<Return>", sendd)
 entry_field.pack()
 send_button = tkinter.Button(top, text="Send", command=sendd)
