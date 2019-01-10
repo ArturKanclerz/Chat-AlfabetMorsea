@@ -97,7 +97,7 @@ def change_to_sound(msg = ""):
     prefix = msg[1:msg.index(':')+1]
     just_msg = msg[msg.index(':') + 1:]
     prefix = prefix[0].upper() + prefix[1:]
-    msg_list.insert(tkinter.END, prefix + " Odtwarzam dzwiek...")
+    msg_list.insert(tkinter.END, prefix + " Playing song...")
     msg_list.see(tkinter.END)
     for i in range(len(just_msg)):
         if sound_dict.get(just_msg[i]) is not None:
@@ -121,7 +121,7 @@ def change_to_image(msg = ""):
     just_msg = msg[msg.index(':') + 1:]
     prefix = prefix[0].upper() + prefix[1:]
     print prefix
-    msg_list.insert(tkinter.END, prefix + " Wyswietlam wiadomosc graficzna...")
+    msg_list.insert(tkinter.END, prefix + " Rendering graphical message...")
     for i in range(len(just_msg)):
         if image_dict.get(just_msg[i]) is not None:
             temp_tuple = image_dict.get(just_msg[i])
@@ -140,16 +140,12 @@ def send(check, event=None):  # event is passed by binders.
     global c
     if check is False:
         msg = my_msg.get()
-        nick ="Twoj nick: " + msg
+        nick ="Your nick: " + msg
         nickLabel = Label(top, text=nick, bg="#33CC00", fg="black", font="Helvetica")
         nickLabel.place(x=-10, y=100, height=30, width=220)
         c = True
-        print "Jestem w check FALSE"
     else:
         msg = var.get().__str__() + my_msg.get()
-        print "Jestem w check TRUE"
-    print "Check: " + check.__str__()
-    print "Wiadomosc do wyslania: " + msg
     my_msg.set("")  # Clears input field.
     client_socket.send(bytes(msg))
     if msg[1:] == "{quit}":
@@ -181,15 +177,15 @@ messages_frame.pack()
 var = tkinter.IntVar()
 tapy = 170
 var.set(0)
-Radiobutton(text='Tekst', value=0, variable=var).place(x=840, y=180)
-Radiobutton(text='Dekodowanie', value=1, variable=var).place(x=840, y=205)
-Radiobutton(text='Kodowanie', value=2, variable=var).place(x=840, y=230)
-Radiobutton(text='Sygnaly dzwiekowe', value=3, variable=var).place(x=840, y=255)
-Radiobutton(text='Sygnaly graficzne', value=4, variable=var).place(x=840, y=280)
+Radiobutton(text='Text', value=0, variable=var).place(x=840, y=180)
+Radiobutton(text='Decoding', value=1, variable=var).place(x=840, y=205)
+Radiobutton(text='Encoding', value=2, variable=var).place(x=840, y=230)
+Radiobutton(text='Sound signals', value=3, variable=var).place(x=840, y=255)
+Radiobutton(text='Graphic signals', value=4, variable=var).place(x=840, y=280)
 
-imageLabel = Label(top, text="Wiadomosc graficzna", bg="#33CC00", fg="black", font="Helvetica")
+imageLabel = Label(top, text="Graphic Message", bg="#33CC00", fg="black", font="Helvetica")
 imageLabel.place(x=-10, y=230, height=30, width=200)
-optionsLabel = Label(top, text="Wybierz opcje", bg="#33CC00", fg="black", font="Helvetica")
+optionsLabel = Label(top, text="Choose option", bg="#33CC00", fg="black", font="Helvetica")
 optionsLabel.place(x=775, y=130, height=30, width=200)
 
 image = Button(font="Helvetica", bg="grey")

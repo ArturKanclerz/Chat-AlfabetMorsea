@@ -68,7 +68,6 @@ decode_dict = {
 def decode(msg):
     pom = " "
     list_of_char = msg.split(' ')
-    print "TEST"
     print list_of_char
     print list_of_char
     for char in list_of_char:
@@ -96,7 +95,7 @@ def accept_incoming_connections():
     while True:
         client, client_address = SERVER.accept()
         print("%s:%s has connected." % client_address)
-        client.send(bytes(" Witaj w chacie! Wpisz swoj nick i nacisnij Enter"))
+        client.send(bytes(" Welcome in Kanclerz&Romaniuk chat!!! Type your nick and press Enter"))
         addresses[client] = client_address
         Thread(target=handle_client, args=(client,)).start()
 
@@ -106,7 +105,7 @@ def handle_client(client):  # Takes client socket as argument.
     """Handles a single client connection."""
 
     name = client.recv(BUFSIZ).decode("utf8")
-    welcome = ' Witaj %s! Jezeli chcesz zakonczyc wpisz {quit}.' % name
+    welcome = ' Hello %s! If you want to exit, please type {quit}.' % name
     client.send(bytes(welcome))
     msg = " %s has joined the chat!" % name
     broadcast(bytes(msg))
