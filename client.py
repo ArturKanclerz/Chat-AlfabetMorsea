@@ -70,7 +70,6 @@ image_dict = {
 
 
 def receive():
-    """Handles receiving of messages."""
     global c2
     while True:
 
@@ -135,7 +134,7 @@ def sendd(event=None):
     global c
     send(c)
 
-def send(check, event=None):  # event is passed by binders.
+def send(check, event=None):
 
     global c
     if check is False:
@@ -146,7 +145,7 @@ def send(check, event=None):  # event is passed by binders.
         c = True
     else:
         msg = var.get().__str__() + my_msg.get()
-    my_msg.set("")  # Clears input field.
+    my_msg.set("")
     client_socket.send(bytes(msg))
     if msg[1:] == "{quit}":
         client_socket.close()
@@ -154,7 +153,6 @@ def send(check, event=None):  # event is passed by binders.
 
 
 def on_closing(event=None):
-    """This function is to be called when the window is closed."""
     my_msg.set("{quit}")
     sendd()
 
@@ -165,10 +163,9 @@ top.title("Chat - Kanclerz & Romaniuk")
 top.configure(bg="#716664")
 
 messages_frame = tkinter.Frame(top)
-my_msg = tkinter.StringVar()  # For the messages to be sent.
+my_msg = tkinter.StringVar()
 my_msg.set("")
-scrollbar = tkinter.Scrollbar(messages_frame)  # To see through previous messages.
-# this will contain the messages.
+scrollbar = tkinter.Scrollbar(messages_frame)
 msg_list = tkinter.Listbox(messages_frame, height=28, width=85, bg="#99FFFF", yscrollcommand=scrollbar.set)
 scrollbar.pack(side=tkinter.RIGHT, fill=tkinter.Y)
 msg_list.pack(side=tkinter.LEFT, fill=tkinter.BOTH)
@@ -199,8 +196,8 @@ send_button.pack()
 
 top.protocol("WM_DELETE_WINDOW", on_closing)
 
-# Socket part
-HOST = '127.0.0.1'  # Enter host of the server without inverted commas
+
+HOST = '25.54.174.161'
 PORT = 33006
 BUFSIZ = 1024
 ADDR = (HOST, PORT)
@@ -210,4 +207,4 @@ client_socket.connect(ADDR)
 
 receive_thread = Thread(target=receive)
 receive_thread.start()
-tkinter.mainloop()  # for start of GUI  Interface
+tkinter.mainloop()

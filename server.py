@@ -1,8 +1,5 @@
-import os
 from socket import AF_INET, socket, SOCK_STREAM
 from threading import Thread
-
-from pygame import mixer, time
 
 
 encode_dict = {
@@ -101,8 +98,7 @@ def accept_incoming_connections():
 
 
 
-def handle_client(client):  # Takes client socket as argument.
-    """Handles a single client connection."""
+def handle_client(client):
 
     name = client.recv(BUFSIZ).decode("utf8")
     welcome = ' Hello %s! If you want to exit, please type {quit}.' % name
@@ -133,8 +129,7 @@ def handle_client(client):  # Takes client socket as argument.
             break
 
 
-def broadcast(msg, prefix=""):  # prefix is for name identification.
-    """Broadcasts a message to all the clients."""
+def broadcast(msg, prefix=""):
 
     for sock in clients:
         sock.send(msg[0] + bytes(prefix) + msg[1:])
@@ -143,7 +138,7 @@ def broadcast(msg, prefix=""):  # prefix is for name identification.
 clients = {}
 addresses = {}
 
-HOST = '127.0.0.1'
+HOST = '25.54.174.161'
 PORT = 33006
 BUFSIZ = 1024
 ADDR = (HOST, PORT)
